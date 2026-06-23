@@ -56,11 +56,39 @@ The full cascading active analog circuit layout as built inside LTspice:
 ![Complete Front-End Schematic](./images/schematic.png)
 
 ### 2. Time-Domain Signal Purification (.tran)
-The transient performance proves the operational capabilities of the analog chain:
+
 * **Raw Input Signal:** The target 10 Hz ECG sine wave is entirely illegible, completely buried under a heavy, jagged 50 Hz environmental noise ripple.
+![Raw Input](./images/1_raw_input.png)
+
 * **Pre-Amplifier Output:** Lifts the combined mixed waveform by 40 dB, prepping it for processing.
-* **Internal Twin-T Dynamics:** The parallel low-pass and high-pass branch nodes split the signal. At 50 Hz, they maintain a phase shift difference that cancels out the powerline ripple at the summing node.
-* **Final Purified Output (Vout_AFE):** Shows a smooth, pristine 10 Hz cardiac wave. The 50 Hz component is flattened out entirely after a brief transient settling period.
+![Pre-Amp Output](./images/AMP_STAGE_1.png)
+
+* **Internal Twin-T Dynamics:** The parallel low-pass and high-pass branch nodes split the signal to achieve phase cancellation.
+![Twin-T Nodes](./images/twin_t_nodes.png)
+
+* **Stage 2 Time Response:** The internal transient behavior right after leaving the active Twin-T notch section.
+![Stage 2 Time Response](./images/stage2_time_response.png)
+![Twin-T Time Response](./images/twin_t_time_response.png)
+
+* **Virtual Ground Configuration:** The reference stabilizing node layout for single-supply biasing.
+![Virtual Ground](./images/virtual_ground.png)
+
+* **Final Purified Output:** Shows a smooth, pristine 10 Hz cardiac wave at the final output stage.
+![Final Output](./images/final_time_output.png)
+
+---
+
+### 3. AC Frequency Domain Analysis (.ac)
+
+* **Twin-T Frequency Response:** Shows the sharp attenuation notch targeted exactly at 50 Hz.
+![Twin-T Freq Response](./images/twin_t_freq_response.png)
+
+* **Stage 2 Frequency Response:** Performance verification of the notch filter section post-bootstrapping.
+![Stage 2 Freq Response](./images/stage2_freq_response.png)
+
+* **Final System Frequency Response:** The complete system Bode plot demonstrating flat low-frequency response, a sharp 50 Hz notch, and a clean high-frequency roll-off.
+![Final Output Frequency Response](./images/final_output_frequency_response.png)
+![Final Output Frequency Response Extended](./images/final_output_frequency_response(100kHz).png)
 
 ---
 
