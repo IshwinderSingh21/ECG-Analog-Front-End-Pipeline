@@ -12,12 +12,20 @@ The exact proportion of feedback is controlled by a low-impedance voltage divide
 
 $$x = \frac{R_{fb2}}{R_{fb1} + R_{fb2}}$$
 
-### 💡 Dynamic Q-Factor Tuning
-Without active feedback ($x = 0$), a passive Twin-T configuration has a static, highly dampening quality factor of $Q = 0.25$. When the active bootstrapping loop is closed, the system's effective selectivity scales dynamically according to the relation:
+### 💡 Dynamic Q-Factor Tuning & Component Selection
+Without active feedback ($x = 0$), a passive Twin-T configuration has a static, highly dampening quality factor of $Q = 0.25$. When the active bootstrapping loop is closed, the system's effective selectivity scales dynamically based on the feedback fraction network.
 
-$$Q_{active} = \frac{0.25}{1 - x}$$
+**Our Design Choice:** To ensure a highly selective filter that completely isolates 50 Hz noise without clipping the 10 Hz ECG components, our target specification was set to **$Q = 5$**. 
 
-By selecting high-precision resistors to lock in $x \approx 0.95$, the circuit amplifies the effective system selectivity to **$Q \approx 5$**. This narrows the rejection band around the center frequency while keeping the diagnostic 10 Hz baseline completely flat and unattenuated.
+To achieve this sharp selectivity profile within our specific active network topology, the feedback voltage divider fraction was calculated and tuned to:
+
+$$x = 0.1$$
+
+To precisely lock in this $x = 0.1$ (10% feedback) ratio, we engineered the voltage divider using a highly accurate proportional resistor network of **$1\text{ R}$ and $9\text{ R}$**:
+
+$$x = \frac{1\text{ R}}{9\text{ R} + 1\text{ R}} = \frac{1}{10} = 0.1$$
+
+By selecting high-precision resistors for our voltage divider to maintain this exact $1\text{ R} : 9\text{ R}$ ratio, the circuit passes precisely 10% of the buffered output voltage back to the bootstrap node network. This design choice narrows the rejection band tightly around the 50 Hz center frequency while keeping the critical diagnostic 10 Hz baseline completely flat and unattenuated.
 
 The center notch frequency ($f_0$) is derived using:
 
