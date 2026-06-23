@@ -14,11 +14,11 @@ This stage handles the primary amplification of the raw biopotential data. Becau
 
 ## 📐 Mathematical Derivation
 
-This stage uses a classic **Non-Inverting Amplifier** topology. The input signal is fed directly into the positive terminal ($+$), ensuring exceptionally high input impedance so it doesn't load down the biometric sensors.
+This stage uses a classic **Non-Inverting Amplifier** topology. The input signal is fed directly into the positive terminal (+), ensuring exceptionally high input impedance so it doesn't load down the biometric sensors.
 
 The voltage gain ($A_v$) is calculated using the standard ideal closed-loop equation:
 
-$$A_v = 1 + \frac{R_{\text{GAIN\_TOP}}}{R_{\text{GAIN\_GND}}}$$
+$$A_v = 1 + \frac{R_{TOP}}{R_{GND}}$$
 
 Substituting our calculated design values:
 
@@ -32,5 +32,5 @@ $$\text{Gain (dB)} = 20 \cdot \log_{10}(100) = 40\text{ dB}$$
 
 ## 📈 Stage Verification Plots
 
-* **Amplifier Output Waveform:** Stage 1 scales both the input 10 Hz wave and the noise linearly by exactly $100\times$, generating a stable peak-to-peak output signal.
+* **Amplifier Output Waveform:** Stage 1 scales both the input 10 Hz wave and the noise linearly by exactly 100x, generating a stable peak-to-peak output signal.
 ![Pre-Amp Output](../images/AMP_STAGE_1.png)
